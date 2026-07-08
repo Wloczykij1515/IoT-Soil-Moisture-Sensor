@@ -117,6 +117,10 @@ Możliwe automatyzacje:
 * wykresy zmian wilgotności
 * obsługa wielu czujników
 
+
+
+SCREEN Z APLIKACJI
+
 ## 🔒 Bezpieczeństwo
 
 Projekt uwzględnia podstawowe zasady bezpieczeństwa:
@@ -135,6 +139,6 @@ Projekt uwzględnia podstawowe zasady bezpieczeństwa:
 * obsługa wielu urządzeń IoT
 
 ## 📸 Zdjęcia projektu
-Schemat projektu
+* Schemat projektu
 [![Zobacz dokument PDF](miniatura.png)](schemat.pdf)
 
