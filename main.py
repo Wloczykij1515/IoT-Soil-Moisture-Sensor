@@ -1,8 +1,8 @@
-import time
+import time, json
 from machine import Pin, deepsleep
 from umqtt.simple import MQTTClient
 import network
-from config import WIFI_SSID, WIFI_PASSWORD, MQTT_BROKER, MQTT_PORT, MQTT_CLIENT_ID, MQTT_USER, MQTT_PASS, air, water, TOPIC_PUB, zasilanie, sygnal
+from config import WIFI_SSID, WIFI_PASSWORD, MQTT_BROKER, MQTT_PORT, MQTT_CLIENT_ID, MQTT_USER, MQTT_PASS, air, water, TOPIC_PUB, zasilanie, sygnal, config_topic, config_payload
 from sensors import SoilMoistureSensor
 
 
@@ -37,6 +37,7 @@ if connect_wifi():
         print(f"Łączenie z brokerem MQTT {MQTT_BROKER}")
         client = MQTTClient(MQTT_CLIENT_ID, MQTT_BROKER, port=MQTT_PORT, user=MQTT_USER, password=MQTT_PASS)
         client.connect()
+        client.publish(config_topic, json.dumps(config_payload), retain=True)
 
         #		odczytanie danych i ich wysył
         procenty = SoilMoistureSensor(pin_adc=sygnal, pin_vcc=zasilanie, air_val=air, water_val=water)
