@@ -118,8 +118,7 @@ Możliwe automatyzacje:
 * połączenie z systemem automatycznego nawadnania
 
 
-
-SCREEN Z APLIKACJI
+[![zobacz](screen_ios.png)](screen_ios.png)
 
 ## 🔒 Bezpieczeństwo
 
