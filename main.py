@@ -42,7 +42,7 @@ if connect_wifi():
         procenty = SoilMoistureSensor(pin_adc=sygnal, pin_vcc=zasilanie, air_val=air, water_val=water)
         wilgotnosc = procenty.percent()
         msg = f"{wilgotnosc}%"
-        client.publish(TOPIC_PUB, msg.encode())
+        client.publish(TOPIC_PUB, msg.encode(), retain=True)
         print(f"Wysłano: {msg}")
 
         #		rozłączenie z MQTT
