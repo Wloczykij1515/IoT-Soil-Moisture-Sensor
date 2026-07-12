@@ -2,7 +2,7 @@ import time
 from machine import Pin, deepsleep
 from umqtt.simple import MQTTClient
 import network
-from config import WIFI_SSID, WIFI_PASSWORD, MQTT_BROKER, MQTT_PORT, MQTT_CLIENT_ID, MQTT_USER, MQTT_PASS, air, water, TOPIC_PUB
+from config import WIFI_SSID, WIFI_PASSWORD, MQTT_BROKER, MQTT_PORT, MQTT_CLIENT_ID, MQTT_USER, MQTT_PASS, air, water, TOPIC_PUB, zasilanie, sygnal
 from sensors import SoilMoistureSensor
 
 
@@ -39,7 +39,7 @@ if connect_wifi():
         client.connect()
 
         #		odczytanie danych i ich wysył
-        procenty = SoilMoistureSensor(pin_adc=34, pin_vcc=18, air_val=air, water_val=water)
+        procenty = SoilMoistureSensor(pin_adc=sygnal, pin_vcc=zasilanie, air_val=air, water_val=water)
         wilgotnosc = procenty.percent()
         msg = f"{wilgotnosc}%"
         client.publish(TOPIC_PUB, msg.encode())
