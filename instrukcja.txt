@@ -35,7 +35,7 @@ zostanie w pełni wyczyszczona !!!
 kalibracja.py)
 8. Edytuj plik config.py zastąp wartości zmiennych prawdziwymi danymi
 9. Włącz plik kalibracja.py i postępuj zgodnie z instrukcją
-10. Otrzymane wartości wpisz w pliku main.py w linii 43
+10. Otrzymane wartości wpisz w pliku config.py
 11. Przy pomocy Thonny wgraj pliki na ESP32 (pomiń plik kalibracja.py)
 
 -----------------------------------------------------------------------------------------------------------
