@@ -1,0 +1,84 @@
+===========================================================================================================
+					INSTRUKCJA KROK PO KROKU
+===========================================================================================================
+Ten poradnik przeprowadzi Cię przez pełen proces konfiguracji i integracji całego systemu monitorowania 
+wilgotności gleby.
+
+-----------------------------------------------------------------------------------------------------------
+KROK 1: PRZYGOTOWANIE SPRZĘTU
+-----------------------------------------------------------------------------------------------------------
+1.1 Połącz czujnik wilgotności gleby (np.capative soil moisture sensor v1.2) z ESP32:
+	- VCC czujnika -> Pin 18
+	- GND czujnika -> GND
+	- AOUT (sygnał) -> Pin analogowy GPIO 34
+
+[Pomiń w przypadku zasilania ESP32 przy pomocy USB]
+1.2 Połącz 4 baterię AAA z ESP32:
+	- PLUS -> 5V
+	- MINUS -> GND
+*** WAŻNE | JEŚLI PODŁĄCZONE SĄ BATERIE, USB NIE MOŻE BYĆ PODŁĄCZONE BO GROZI TO SPALENIEM 
+MIKROKONTROLERA***
+
+-----------------------------------------------------------------------------------------------------------
+KROK 2: PROGRAMOWANIE ESP32
+-----------------------------------------------------------------------------------------------------------
+Zainstaluj IDE Thonny z oficjalnej strony
+Podłącz ESP32 do komputera przy pomocy kabla USB który obsługuje przesył danych przy jednoczesnym
+zasilaniu
+3. Uruchom edytor Thonny
+4. Wybierz Narzędzia -> Opcje -> Interpreter
+	- wybierz MicroPython (ESP32)
+5. Wybierz port COM (Windows) lub odpowiedni port USB (Linux/macOS)
+6. Kliknij Install i poczekaj na zakończenie instalacji. MicroPython zostanie zainstalowany a pamięć ESP32
+zostanie w pełni wyczyszczona !!!
+7. Pobierz niezbędne pliki z repozytorium (main.py | config.py | mqtt_client.py | sensors.py | boot.py | 
+kalibracja.py)
+8. Edytuj plik config.py zastąp wartości zmiennych prawdziwymi danymi
+9. Włącz plik kalibracja.py i postępuj zgodnie z instrukcją
+10. Otrzymane wartości wpisz w pliku main.py w linii 43
+11. Przy pomocy Thonny wgraj pliki na ESP32 (pomiń plik kalibracja.py)
+
+-----------------------------------------------------------------------------------------------------------
+KROK 3: HOME ASSISTANT
+-----------------------------------------------------------------------------------------------------------
+Projekt wymaga serwera HOMEASSISTANT OS
+
+*Instalacja HOMEASSISTANT na VM* *Instalacja na prawdziwym terminalu jest bliźniaczo podobna*
+Pobierz VirtualBoxa z oficjalnej strony
+Pobierz HOMEASSISTANT OS z oficjalnej strony
+Plik .vdi wrzuć do VirtualBoxa
+Nadaj odpowiednią ilość zasobów *zalecane 2 CPU oraz 2> GB RAM*
+WAŻNE| Ustaw kartę sieciową na bridge(mostkowaną) umożliwia to działanie w tej samej sieci co twój
+telefon oraz ESP32
+6. Włącz maszynę wirtualną i postępuj zgodnie z instalacją HomeAssistant
+7. Sprawdź IP maszyny wirtualnej *zalecam użycie adresu statycznego* i wpisz go w pliku config.py
+
+-----------------------------------------------------------------------------------------------------------
+KROK 4: KONFIGURACJA MQTT
+-----------------------------------------------------------------------------------------------------------
+Otwórz przeglądarkę i wejdź na stronę adresu IP serwera
+Najprostszym rozwiązaniem jest instalacja oficjalnego dodatku o nazwie "Mosquitto broker" oraz "File Editor"
+Utwórz użykownika zgodnie z nazwą i hasłem podanym przez ciebie w pliku config.py
+Otwórz plik konfiguracyjny configuration.yaml i dopisz:
+mqtt:
+     sensor:
+       - name: "Wilgotność Gleby"
+         state_topic: "esp32/soilmoisturesensor"
+         unit_of_measurement: "%"
+         value_template: "{{ value | float }}"
+*PAMIĘTAJ O WCIĘCIACH*
+5. Zapisz plik i zrestartuj konfigurację Home Assistant
+
+-----------------------------------------------------------------------------------------------------------
+KROK 5: TWORZENIE DASHBOARDU
+-----------------------------------------------------------------------------------------------------------
+Wejdź na swój Dashboard w Home Assistant
+Kliknij trzy kropki i wybierz "Edytuj interfejs"
+Kliknij "Dodaj kartę" i wybierz kartę typu "Wskaźnik" lub "Wykres"
+Jako encję wybierz swój nowy czujnik 
+Ustaw automatyczne alerty
+
+===========================================================================================================
+						SYSTEM DZIAŁA!
+===========================================================================================================
+Twórca:wloczykij1515
