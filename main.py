@@ -2,8 +2,7 @@ import time
 from machine import Pin, deepsleep
 from umqtt.simple import MQTTClient
 import network
-from config import WIFI_SSID, WIFI_PASSWORD, MQTT_BROKER, MQTT_PORT, MQTT_CLIENT_ID, MQTT_USER, MQTT_PASS, air, water
-from mqtt_client import TOPIC_PUB
+from config import WIFI_SSID, WIFI_PASSWORD, MQTT_BROKER, MQTT_PORT, MQTT_CLIENT_ID, MQTT_USER, MQTT_PASS, air, water, TOPIC_PUB
 from sensors import SoilMoistureSensor
 
 
