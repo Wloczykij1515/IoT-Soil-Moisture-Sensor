@@ -80,7 +80,7 @@ Czujnik wilgotności gleby
 * Możliwość tworzenia automatyzacji i powiadomień
 * Modularna struktura kodu MicroPython
 * Tryb niskiego poboru energii(Deep Sleep)
-
+* System wspiera MQTT Auto-Discovery, co pozwala na automatyczne wykrycie sensora przez Home Assistant bez edycji plików konfiguracyjnych YAML
 ## 🛠️ Wykorzystane technologie
 
 ### Hardware
