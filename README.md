@@ -89,7 +89,7 @@ water = WARTOŚĆ W WODZIE
 ### 3. Kalibracja czujnika
 Przed uruchomieniem systemu należy skalibrować czujnik, aby poprawnie wskazywał 0% i 100%.
 1. Wgraj na ESP32 skrypt [kalibracyjny](kalibracja.py)
-2. Postępuj zgodnie z instrukcją i wpisz otrzymane wyniki w lini 43 pliku main.py
+2. Postępuj zgodnie z instrukcją i wpisz otrzymane wyniki do pliku config.py
 
 ### 4. Uruchomienie
 
