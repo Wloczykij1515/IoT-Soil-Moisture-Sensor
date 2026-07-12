@@ -55,7 +55,7 @@ else:
     print("Pomijanie wysyłania ze względu na brak Wi-Fi.")
 
 #			deepsleep
-time.sleep(5)
+time.sleep(0.5)
 DEEP_SLEEP_TIME_MS = 10 * 60 * 1000
 
 print(f"Wchodzę w stan Deep Sleep na {DEEP_SLEEP_TIME_MS / 1000 / 60} minut")
