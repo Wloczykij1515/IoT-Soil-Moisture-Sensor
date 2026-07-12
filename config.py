@@ -7,6 +7,13 @@ MQTT_CLIENT_ID = "ID ESP" #id musi być unikalne
 MQTT_USER = "NAZWA UŻYTKOWNIKA"
 MQTT_PASS = "HASŁO UŻYTKOWNIKA"
 TOPIC_PUB = b"esp32/soilmoisturesensor"
+config_topic = b"homeassistant/sensor/soil_moisture/config"
+config_payload = {
+    "name": "Wilgotnosc Gleby",
+    "state_topic": b"esp32/soilmoisturesensor",
+    "unit_of_measurement": "%",
+    "icon": "mdi:water-percent"
+}
 #################################
 air = WARTOŚĆ W POWIETRZU
 water = WARTOŚĆ W WODZIE
