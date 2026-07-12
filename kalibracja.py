@@ -1,4 +1,4 @@
-from machine Import Pin, ADC
+from machine import Pin, ADC
 import time
 
 def ask(text):
