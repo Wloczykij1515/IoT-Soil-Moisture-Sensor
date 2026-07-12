@@ -17,18 +17,25 @@ class SoilMoistureSensor:
         self.vcc.value(1)
         time.sleep(0.2)
 
-        wartosc = self.sensor.read()
+        total = 0
+        samples = 10
+        for _ in range(samples):
+            total += self.sensor.read()
+            time.sleep(0.01)
 
         self.vcc.value(0)
-        return wartosc
+        
+        return total // samples
 
     def percent(self):
         raw = self.read_raw()
 
+        denominator = self.water - self.air
+        if denominator == 0:
+            return 0
 
-        procent = ((raw - self.air) / (self.water - self.air)) * 100
+        procent = ((raw - self.air) / denominator) * 100
         procent = round(procent)
-
 
         if procent < 0:
             procent = 0
