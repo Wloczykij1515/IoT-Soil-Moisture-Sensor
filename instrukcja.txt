@@ -1,5 +1,5 @@
 ===========================================================================================================
-					INSTRUKCJA KROK PO KROKU
+										INSTRUKCJA KROK PO KROKU
 ===========================================================================================================
 Ten poradnik przeprowadzi Cię przez pełen proces konfiguracji i integracji całego systemu monitorowania 
 wilgotności gleby.
@@ -22,8 +22,8 @@ MIKROKONTROLERA***
 -----------------------------------------------------------------------------------------------------------
 KROK 2: PROGRAMOWANIE ESP32
 -----------------------------------------------------------------------------------------------------------
-Zainstaluj IDE Thonny z oficjalnej strony
-Podłącz ESP32 do komputera przy pomocy kabla USB który obsługuje przesył danych przy jednoczesnym
+1. Zainstaluj IDE Thonny z oficjalnej strony
+2. Podłącz ESP32 do komputera przy pomocy kabla USB który obsługuje przesył danych przy jednoczesnym
 zasilaniu
 3. Uruchom edytor Thonny
 4. Wybierz Narzędzia -> Opcje -> Interpreter
@@ -41,44 +41,35 @@ kalibracja.py)
 -----------------------------------------------------------------------------------------------------------
 KROK 3: HOME ASSISTANT
 -----------------------------------------------------------------------------------------------------------
-Projekt wymaga serwera HOMEASSISTANT OS
+*****************************PROJEKT WYMAGA SERWERA HOMEASSISTANT OS***************************************
 
 *Instalacja HOMEASSISTANT na VM* *Instalacja na prawdziwym terminalu jest bliźniaczo podobna*
-Pobierz VirtualBoxa z oficjalnej strony
-Pobierz HOMEASSISTANT OS z oficjalnej strony
-Plik .vdi wrzuć do VirtualBoxa
-Nadaj odpowiednią ilość zasobów *zalecane 2 CPU oraz 2> GB RAM*
-WAŻNE| Ustaw kartę sieciową na bridge(mostkowaną) umożliwia to działanie w tej samej sieci co twój
-telefon oraz ESP32
+1. Pobierz VirtualBoxa z oficjalnej strony
+2. Pobierz HOMEASSISTANT OS z oficjalnej strony
+3. Plik .vdi wrzuć do VirtualBoxa
+4. Nadaj odpowiednią ilość zasobów *zalecane 2 CPU oraz 2> GB RAM*
+***WAŻNE| Ustaw kartę sieciową na bridge(mostkowaną) umożliwia to działanie w tej samej sieci co twój
+telefon oraz ESP32***
 6. Włącz maszynę wirtualną i postępuj zgodnie z instalacją HomeAssistant
 7. Sprawdź IP maszyny wirtualnej *zalecam użycie adresu statycznego* i wpisz go w pliku config.py
 
 -----------------------------------------------------------------------------------------------------------
 KROK 4: KONFIGURACJA MQTT
 -----------------------------------------------------------------------------------------------------------
-Otwórz przeglądarkę i wejdź na stronę adresu IP serwera
-Najprostszym rozwiązaniem jest instalacja oficjalnego dodatku o nazwie "Mosquitto broker" oraz "File Editor"
-Utwórz użykownika zgodnie z nazwą i hasłem podanym przez ciebie w pliku config.py
-Otwórz plik konfiguracyjny configuration.yaml i dopisz:
-mqtt:
-     sensor:
-       - name: "Wilgotność Gleby"
-         state_topic: "esp32/soilmoisturesensor"
-         unit_of_measurement: "%"
-         value_template: "{{ value | float }}"
-*PAMIĘTAJ O WCIĘCIACH*
-5. Zapisz plik i zrestartuj konfigurację Home Assistant
+1. Otwórz przeglądarkę i wejdź na stronę adresu IP serwera
+2. Najprostszym rozwiązaniem jest instalacja oficjalnego dodatku o nazwie "Mosquitto broker"
+3. Utwórz użykownika zgodnie z nazwą i hasłem podanym przez ciebie w pliku config.py
 
 -----------------------------------------------------------------------------------------------------------
 KROK 5: TWORZENIE DASHBOARDU
 -----------------------------------------------------------------------------------------------------------
-Wejdź na swój Dashboard w Home Assistant
-Kliknij trzy kropki i wybierz "Edytuj interfejs"
-Kliknij "Dodaj kartę" i wybierz kartę typu "Wskaźnik" lub "Wykres"
-Jako encję wybierz swój nowy czujnik 
-Ustaw automatyczne alerty
+1. Wejdź na swój Dashboard w Home Assistant
+2. Kliknij trzy kropki i wybierz "Edytuj interfejs"
+3. Kliknij "Dodaj kartę" i wybierz kartę typu "Wskaźnik" lub "Wykres"
+4. Jako encję wybierz swój nowy czujnik 
+5. Ustaw automatyczne alerty
 
 ===========================================================================================================
-						SYSTEM DZIAŁA!
+											SYSTEM DZIAŁA!
 ===========================================================================================================
 Twórca:wloczykij1515
