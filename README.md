@@ -196,6 +196,7 @@ esp32 odczytuje wartość i przesyła informację do homeassistanta
 
 ## 📸 Zdjęcia projektu
 * Schemat projektu zasilanego przez baterie *(w przypadku zasilania przez usb należy pominąć podłączenie koszyka z bateriami do 5V oraz masy)*
+
 [![Zobacz dokument PDF](miniatura.png)](miniatura.png)
 
 
