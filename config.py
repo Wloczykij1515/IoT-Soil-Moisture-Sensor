@@ -1,5 +1,3 @@
-from main import water_val
-
 WIFI_SSID = "NAZWA SIECI WIFI 2.4GHz"
 WIFI_PASSWORD = "HASŁO WIFI"
 #################################
