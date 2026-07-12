@@ -1,1 +1,0 @@
-TOPIC_PUB = b"esp32/soilmoisturesensor"
