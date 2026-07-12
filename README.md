@@ -36,15 +36,15 @@ Czujnik wilgotności gleby
 
 ### Hardware
 
-* ESP32
-* ***Pojemnościowy czujnik wilgotności gleby*** *(wskazane jest użycie czujnika pojemnościowego ze względu na mniejszą korozje nóżek)*
+* [ESP32](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp-dev-kits-en-master-esp32.pdf)
+* [Pojemnościowy czujnik wilgotności gleby](https://www.datocms-assets.com/28969/1662716326-hw-101-hw-moisture-sensor-v1-0.pdf) *(wskazane jest użycie czujnika pojemnościowego ze względu na mniejszą korozje nóżek)*
 * Opcjonalne zasilanie bateriami 4xAAA
 
 ### Software
 
-* MicroPython
-* MQTT *(MQTT Broker Mosquitto)*
-* Home Assistant OS
+* [MicroPython](https://micropython.org/)
+* [MQTT](https://pl.wikipedia.org/wiki/MQTT) *(MQTT Broker Mosquitto)*
+* [Home Assistant OS](https://www.home-assistant.io/)
 * WiFi 2.4GHz
 
 ## 📂 Struktura projektu
@@ -68,7 +68,7 @@ Pobierz odpowiednią wersję firmware MicroPython i wgraj ją na płytkę ESP32.
 
 ### 2. Konfiguracja urządzenia
 
-Uzupełnij dane w pliku konfiguracyjnym:
+Uzupełnij dane w pliku [config.py](config.py):
 
 ```python
 WIFI_SSID = "NAZWA SIECI WIFI 2.4GHz"
@@ -89,7 +89,7 @@ water = WARTOŚĆ W WODZIE
 ### 3. Kalibracja czujnika
 Przed uruchomieniem systemu należy skalibrować czujnik, aby poprawnie wskazywał 0% i 100%.
 1. Wgraj na ESP32 skrypt [kalibracyjny](kalibracja.py)
-2. Postępuj zgodnie z instrukcją i wpisz otrzymane wyniki do pliku config.py
+2. Postępuj zgodnie z instrukcją i wpisz otrzymane wyniki do pliku [config.py](config.py)
 
 ### 4. Uruchomienie
 
