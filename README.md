@@ -1,3 +1,52 @@
+```ascii art
+
+                         ███                         
+                       ███████                       
+                     ███████████                     
+                   ███████████████                            _   _  ___  __  __ _____                           
+                 ███████████████████                         | | | |/ _ \|  \/  | ____|                          
+                █████████████████████                        | |_| | | | | |\/| |  _|                            
+              █████████████████████████                      |  _  | |_| | |  | | |___                           
+            █████████████████████████████                    |_| |_|\___/|_|__|_|_____|_ _____  _    _   _ _____ 
+          ██████████████     ██████████████                     / \  / ___/ ___|_ _/ ___|_   _|/ \  | \ | |_   _|
+        ███████████████       ███████████████                  / _ \ \___ \___ \| |\___ \ | | / _ \ |  \| | | |  
+      █████████████████        ████████████████               / ___ \ ___) |__) | | ___) || |/ ___ \| |\  | | |  
+    ████████████████████     ████████████████████            /_/   \_\____/____/___|____/ |_/_/   \_\_| \_| |_|  
+   ██████████████████████   ███████████████████████  
+ ████████████████████████   ████████████████████████ 
+█████████████████████████   █████████████████████████
+█████████████████████████   █████████████████████████             ___  ___ ___ _                           
+█████████████████████████   █████████      ██████████            / __|/ _ \_ _| |                          
+█████████████████████████   ████████        █████████            \__ \ (_) | || |__                        
+█████████████████████████   ████████       ██████████            |___/\___/___|____|__ _____ _   _ ___ ___ 
+█████████████████████████   ██████        ███████████             |  \/  |/ _ \_ _/ __|_   _| | | | _ \ __|
+██████████      █████████   ████    █████████████████             | |\/| | (_) | |\__ \ | | | |_| |   / _| 
+█████████        ████████   ██     ██████████████████             |_|__|_|\___/___|___/_|_|__\___/|_|_\___|
+██████████       ████████        ████████████████████              / __| __| \| / __|/ _ \| _ \            
+███████████       ███████      ██████████████████████              \__ \ _|| .` \__ \ (_) |   /            
+████████████████    █████    ████████████████████████              |___/___|_|\_|___/\___/|_|_\            
+██████████████████    ███   █████████████████████████
+████████████████████    █   █████████████████████████
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 📌 Opis projektu
 
 Celem projektu jest stworzenie prostego i rozbudowywalnego systemu IoT do monitorowania warunków uprawy roślin.
@@ -61,7 +110,7 @@ esp32-soil-monitor/
 ```
 
 ## ⚙️ Instalacja i konfiguracja
-*[INSTRUKCJA KROK PO KROKU](instrukcja.txt)*
+*[DOKŁADNA INSTRUKCJA KROK PO KROKU](instrukcja.txt)*
 ### 1. Wgranie MicroPython na ESP32
 
 Pobierz odpowiednią wersję firmware MicroPython i wgraj ją na płytkę ESP32.
@@ -118,7 +167,7 @@ Możliwe automatyzacje:
 * połączenie z systemem automatycznego nawadnania
 
 
-[![zobacz](screen_ios.png)](screen_ios.png)
+<img src="screen_ios.png" alt="screen z telefony" width="500" length='800'/>
 
 ## 🔒 Bezpieczeństwo
 
@@ -145,6 +194,16 @@ esp32 odczytuje wartość i przesyła informację do homeassistanta
 ```
 
 ## 📸 Zdjęcia projektu
-* Schemat projektu zasilanego przez baterie *(w przypadku zasilania przez usb należy pominąć podłączenie do 5V oraz masy)*
+* Schemat projektu zasilanego przez baterie *(w przypadku zasilania przez usb należy pominąć podłączenie koszyka z bateriami do 5V oraz masy)*
 [![Zobacz dokument PDF](miniatura.png)](miniatura.png)
 
+
+## ❗NAPOTKANE WYZWANIA
+* kupiłem wadliwy sensor, początkowo port był źle przylutowany i dostawałem ciągle wartość 0 na AOUT | po poprawieniu lutów wartość krążyła w okolicach 3830 bez względu na środowisko, zmostkowałem diode podawałem większe napięcie mimo wszystko napięcie na 3 nóżce układu NE555 wynosiło 2.7V przy oczekiwanych 1.4 - 1.7 | po naradzeniu się z Gemini oraz Cloud uznałem że szkoda czasu i zamówiłem nowy sensor
+<div style="text-align: right;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/555_Pinout.svg/250px-555_Pinout.svg.png" alt="Opis obrazka" width="300" />
+</div>
+
+* kompletnie nie mogłem dodać ESP32 do HomeAssistant mimo że mikrokontroler podawał informacje że połączył się z brokerem to nie dawał oznak życia na dashboardzie | po 1.5h okazało się że w początkowej wersji pliku konfiguracyjnego zapomniałem podać login i hasło do konta w HomeAssistant
+* zauważyłem że tani czujnik z Chin jest bardzo mocno podatny na różnego rodzaju zakłócenia | uznałem że najlepiej będzie mierzyć wilgoć co 10ms i wyniki uśredniać
+* chciałbym połączyć czujnik z systemem automatycznego nawadniania | ale ze względu na brak środków projekt będzie tylko konceptem
