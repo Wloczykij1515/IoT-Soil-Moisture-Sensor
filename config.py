@@ -6,6 +6,7 @@ MQTT_PORT = 1883
 MQTT_CLIENT_ID = "ID ESP" #id musi być unikalne
 MQTT_USER = "NAZWA UŻYTKOWNIKA"
 MQTT_PASS = "HASŁO UŻYTKOWNIKA"
+TOPIC_PUB = b"esp32/soilmoisturesensor"
 #################################
 air = WARTOŚĆ W POWIETRZU
 water = WARTOŚĆ W WODZIE
