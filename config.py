@@ -10,3 +10,5 @@ TOPIC_PUB = b"esp32/soilmoisturesensor"
 #################################
 air = WARTOŚĆ W POWIETRZU
 water = WARTOŚĆ W WODZIE
+zasilanie = 34 #czujnik wilgotnosci
+sygnal = 18 #czujnik wilgotnosci
