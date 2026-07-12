@@ -140,5 +140,6 @@ Projekt uwzględnia podstawowe zasady bezpieczeństwa:
 
 ## 📸 Zdjęcia projektu
 * Schemat projektu
-[![Zobacz dokument PDF](miniatura.png)](schemat.pdf)
+  
+[![Zobacz dokument PDF](miniatura.png)](miniatura.png)
 
