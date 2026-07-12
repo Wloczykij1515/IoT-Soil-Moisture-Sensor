@@ -185,7 +185,7 @@ Projekt uwzględnia podstawowe zasady bezpieczeństwa:
 * powiązanie czujnika z systemem automatycznego nawadniania
 * stworzenie projektu 3D obudowy dla ESP32 oraz baterii
 
-## 🌿 Scenariusze
+## 🌿 Scenariusz
 ```
 Wilgotność ziemi pod grujecznikiem japońskim spada poniżej 25%
                                ↓
