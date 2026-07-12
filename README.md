@@ -1,10 +1,9 @@
-System IoT do monitorowania wilgotności gleby oparty na mikrokontrolerze ESP32, napisany w języku MicroPython. Urządzenie komunikuje się bezprzewodowo z Home Assistant za pomocą protokołu MQTT, umożliwiając zdalny monitoring roślin, wizualizację danych oraz automatyczne powiadomienia.
-
 ## 📌 Opis projektu
 
 Celem projektu jest stworzenie prostego i rozbudowywalnego systemu IoT do monitorowania warunków uprawy roślin.
 
 ESP32 odczytuje dane z czujnika wilgotności gleby, przetwarza je i wysyła do brokera MQTT. Home Assistant odbiera dane, prezentuje je na dashboardzie oraz umożliwia tworzenie automatyzacji, np. wysyłanie powiadomień o konieczności podlania rośliny.
+Projekt skierowany jest zarówno do użytku domowego jak i profesjonalnych rozwiązań plantatorskich.
 
 ## 🏗️ Architektura systemu
 
@@ -31,6 +30,7 @@ Czujnik wilgotności gleby
 * Wizualizacja aktualnych i historycznych pomiarów
 * Możliwość tworzenia automatyzacji i powiadomień
 * Modularna struktura kodu MicroPython
+* Tryb niskiego poboru energii(Deep Sleep)
 
 ## 🛠️ Wykorzystane technologie
 
@@ -38,15 +38,14 @@ Czujnik wilgotności gleby
 
 * ESP32
 * ***Pojemnościowy czujnik wilgotności gleby*** *(wskazane jest użycie czujnika pojemnościowego ze względu na mniejszą korozje nóżek)*
-* Opcjonalne dodatkowe czujniki środowiskowe
+* Opcjonalne zasilanie bateriami 4xAAA
 
 ### Software
 
 * MicroPython
-* MQTT
-* Home Assistant
-* WiFi
-* JSON
+* MQTT *(MQTT Broker Mosquitto)*
+* Home Assistant OS
+* WiFi 2.4GHz
 
 ## 📂 Struktura projektu
 
@@ -57,13 +56,12 @@ esp32-soil-monitor/
 ├── config.py            # Konfiguracja WiFi i MQTT
 ├── mqtt_client.py       # Obsługa komunikacji MQTT
 ├── sensors.py           # Obsługa czujników
-├── boot.py              # Konfiguracja startowa ESP32
-│
-└── README.md
+└── boot.py              # Konfiguracja startowa ESP32
+
 ```
 
 ## ⚙️ Instalacja i konfiguracja
-
+*[INSTRUKCJA KROK PO KROKU](instrukcja.txt)*
 ### 1. Wgranie MicroPython na ESP32
 
 Pobierz odpowiednią wersję firmware MicroPython i wgraj ją na płytkę ESP32.
@@ -73,15 +71,28 @@ Pobierz odpowiednią wersję firmware MicroPython i wgraj ją na płytkę ESP32.
 Uzupełnij dane w pliku konfiguracyjnym:
 
 ```python
-WIFI_SSID = "twoja_siec"
-WIFI_PASSWORD = "twoje_haslo"
+WIFI_SSID = "NAZWA SIECI WIFI 2.4GHz"
+WIFI_PASSWORD = "HASŁO WIFI"
+#################################
+MQTT_BROKER = "ADRES IP BROKERA MQTT"
+MQTT_PORT = 1883
+MQTT_CLIENT_ID = "ID ESP"
+MQTT_USER = "NAZWA UŻYTKOWNIKA"
+MQTT_PASS = "HASŁO UŻYTKOWNIKA"
+#################################
+air = WARTOŚĆ W POWIETRZU
+water = WARTOŚĆ W WODZIE
 
-MQTT_SERVER = "adres_brokera"
-MQTT_USER = "login"
-MQTT_PASSWORD = "haslo"
 ```
 
-### 3. Uruchomienie
+<font color="red"> ⚠️ **Ważne:** Zanim wyślesz swoje modyfikacje na GitHuba, upewnij się, że dodałeś plik `config.py` do pliku `.gitignore`. Uchroni to Twoje hasła WiFi i MQTT przed przypadkowym opublikowaniem w sieci!
+
+### 3. Kalibracja czujnika
+Przed uruchomieniem systemu należy skalibrować czujnik, aby poprawnie wskazywał 0% i 100%.
+1. Wgraj na ESP32 skrypt [kalibracyjny](kalibracja.py)
+2. Postępuj zgodnie z instrukcją i wpisz otrzymane wyniki w lini 43 pliku main.py
+
+### 4. Uruchomienie
 
 Po podłączeniu ESP32 do zasilania urządzenie:
 
@@ -90,17 +101,6 @@ Po podłączeniu ESP32 do zasilania urządzenie:
 3. Odczytuje wartości z czujnika
 4. Publikuje dane do Home Assistant
 
-## 📡 Przykładowa wiadomość MQTT
-
-Urządzenie publikuje dane w formacie JSON:
-
-```json
-{
-    "device": "soil_sensor_01",
-    "moisture": 65,
-    "timestamp": "2026-07-08T12:00:00"
-}
-```
 
 ## 🏠 Integracja z Home Assistant
 
@@ -116,6 +116,7 @@ Możliwe automatyzacje:
 * historia pomiarów
 * wykresy zmian wilgotności
 * obsługa wielu czujników
+* połączenie z systemem automatycznego nawadnania
 
 
 
@@ -127,19 +128,25 @@ Projekt uwzględnia podstawowe zasady bezpieczeństwa:
 
 * dane logowania przechowywane poza głównym kodem
 * autoryzacja MQTT
-* brak przechowywania poufnych danych w repozytorium
 
 ## 🚀 Możliwe rozszerzenia
 
-* tryb niskiego poboru energii (Deep Sleep)
 * zasilanie bateryjne
-* aktualizacja firmware przez OTA
 * dodatkowe czujniki temperatury i światła
-* własna płytka PCB
 * obsługa wielu urządzeń IoT
+* automatyczne przypomnienia na telefon, gdy wilgotność ziemi spadnie poniżej progu.
+* powiązanie czujnika z systemem automatycznego nawadniania
+
+## 🌿 Scenariusze
+```
+Wilgotność ziemi pod grujecznikiem japońskim spada poniżej 25%
+                               ↓
+esp32 odczytuje wartość i przesyła informację do homeassistanta
+                                ↓
+                        Wysłanie alertu
+```
 
 ## 📸 Zdjęcia projektu
-* Schemat projektu
-  
+* Schemat projektu zasilanego przez baterie *(w przypadku zasilania przez usb należy pominąć podłączenie do 5V oraz masy)*
 [![Zobacz dokument PDF](miniatura.png)](miniatura.png)
 
