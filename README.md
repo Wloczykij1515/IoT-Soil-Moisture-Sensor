@@ -183,6 +183,7 @@ Projekt uwzględnia podstawowe zasady bezpieczeństwa:
 * obsługa wielu urządzeń IoT
 * automatyczne przypomnienia na telefon, gdy wilgotność ziemi spadnie poniżej progu.
 * powiązanie czujnika z systemem automatycznego nawadniania
+* stworzenie projektu 3D obudowy dla ESP32 oraz baterii
 
 ## 🌿 Scenariusze
 ```
