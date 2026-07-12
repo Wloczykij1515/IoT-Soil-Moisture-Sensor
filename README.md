@@ -85,7 +85,6 @@ water = WARTOŚĆ W WODZIE
 
 ```
 
-<font color="red"> ⚠️ **Ważne:** Zanim wyślesz swoje modyfikacje na GitHuba, upewnij się, że dodałeś plik `config.py` do pliku `.gitignore`. Uchroni to Twoje hasła WiFi i MQTT przed przypadkowym opublikowaniem w sieci!
 
 ### 3. Kalibracja czujnika
 Przed uruchomieniem systemu należy skalibrować czujnik, aby poprawnie wskazywał 0% i 100%.
