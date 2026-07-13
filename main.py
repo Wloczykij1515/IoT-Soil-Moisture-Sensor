@@ -2,11 +2,26 @@ import time, json
 from machine import Pin, deepsleep
 from umqtt.simple import MQTTClient
 import network
-from config import WIFI_SSID, WIFI_PASSWORD, MQTT_BROKER, MQTT_PORT, MQTT_CLIENT_ID, MQTT_USER, MQTT_PASS, air, water, TOPIC_PUB, zasilanie, sygnal, config_topic, config_payload
+from config import (
+    WIFI_SSID,
+    WIFI_PASSWORD,
+    MQTT_BROKER,
+    MQTT_PORT,
+    MQTT_CLIENT_ID,
+    MQTT_USER,
+    MQTT_PASS,
+    air,
+    water,
+    TOPIC_PUB,
+    zasilanie,
+    sygnal,
+    config_topic,
+    config_payload,
+)
 from sensors import SoilMoistureSensor
 
 
-#		łączenie z wifi
+# 		łączenie z wifi
 def connect_wifi():
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
@@ -14,7 +29,7 @@ def connect_wifi():
         print(f"Łączenie z {WIFI_SSID}")
         wlan.connect(WIFI_SSID, WIFI_PASSWORD)
 
-        #		limit czasu, w momencie gdy router padnie esp nie rozladowuje baterii
+        # 		limit czasu, w momencie gdy router padnie esp nie rozladowuje baterii
         timeout = 0
         while not wlan.isconnected() and timeout < 20:
             time.sleep(0.5)
@@ -28,25 +43,33 @@ def connect_wifi():
         return False
 
 
-#			GŁÓWNA LOGIKA
+# 			GŁÓWNA LOGIKA
 
-#		łączenie z wifi
+# 		łączenie z wifi
 if connect_wifi():
     try:
-        #		łączenie z MQTT
+        # 		łączenie z MQTT
         print(f"Łączenie z brokerem MQTT {MQTT_BROKER}")
-        client = MQTTClient(MQTT_CLIENT_ID, MQTT_BROKER, port=MQTT_PORT, user=MQTT_USER, password=MQTT_PASS)
+        client = MQTTClient(
+            MQTT_CLIENT_ID,
+            MQTT_BROKER,
+            port=MQTT_PORT,
+            user=MQTT_USER,
+            password=MQTT_PASS,
+        )
         client.connect()
         client.publish(config_topic, json.dumps(config_payload), retain=True)
 
-        #		odczytanie danych i ich wysył
-        procenty = SoilMoistureSensor(pin_adc=sygnal, pin_vcc=zasilanie, air_val=air, water_val=water)
+        # 		odczytanie danych i ich wysył
+        procenty = SoilMoistureSensor(
+            pin_adc=sygnal, pin_vcc=zasilanie, air_val=air, water_val=water
+        )
         wilgotnosc = procenty.percent()
         msg = f"{wilgotnosc}%"
         client.publish(TOPIC_PUB, msg.encode(), retain=True)
         print(f"Wysłano: {msg}")
 
-        #		rozłączenie z MQTT
+        # 		rozłączenie z MQTT
         client.disconnect()
 
     except Exception as e:
@@ -54,7 +77,7 @@ if connect_wifi():
 else:
     print("Pomijanie wysyłania ze względu na brak Wi-Fi.")
 
-#			deepsleep
+# 			deepsleep
 time.sleep(0.5)
 DEEP_SLEEP_TIME_MS = 10 * 60 * 1000
 

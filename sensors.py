@@ -24,7 +24,7 @@ class SoilMoistureSensor:
             time.sleep(0.01)
 
         self.vcc.value(0)
-        
+
         return total // samples
 
     def percent(self):

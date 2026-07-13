@@ -1,9 +1,10 @@
 from machine import Pin, ADC
 import time
 
+
 def ask(text):
     print(text)
-    a = input('>')
+    a = input(">")
     return a
 
 
@@ -14,7 +15,7 @@ stan = True
 sensor.atten(ADC.ATTN_11DB)
 
 while stan == True:
-    b = ask('''
+    b = ask("""
     *PRZYGOTUJ SZKLANKE Z WODĄ*
     
     
@@ -25,24 +26,24 @@ while stan == True:
     P34        <->        AOUT
     
     JEŻELI PODŁĄCZYŁEŚ WPISZ YES
-    ''')
-    if b == 'YES':
-        print('TRZYMAJ CZUJNIK W POWIETRZU NIE DOTYKAJĄC SONDY')
+    """)
+    if b == "YES":
+        print("TRZYMAJ CZUJNIK W POWIETRZU NIE DOTYKAJĄC SONDY")
         time.sleep(3)
         air = sensor.read()
-        print('ZMIERZONO WARTOŚĆ')
-        print('WŁÓŻ CZUJNIK DO SZKLANKI Z WODĄ')
+        print("ZMIERZONO WARTOŚĆ")
+        print("WŁÓŻ CZUJNIK DO SZKLANKI Z WODĄ")
         time.sleep(3)
         water = sensor.read()
-        print(f'''
+        print(f"""
         WARTOŚCI
         
         POWIETRZE - {air}
         WODA - {water}
         
         
-        ''')
+        """)
         stan = False
     else:
-        print('WŁĄCZ PROGRAM JESZCZE RAZ')
+        print("WŁĄCZ PROGRAM JESZCZE RAZ")
         break
