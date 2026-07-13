@@ -1,0 +1,13 @@
+# ==============================================================================
+# Zależności instalowane na mikrokontrolerze (ESP32)
+# ==============================================================================
+# Zewnętrzny pakiet z micropython-lib wymagany do komunikacji z brokerem MQTT.
+micropython-umqtt.simple==1.3.4
+
+# ==============================================================================
+# Środowisko lokalne / narzędzia deweloperskie (Dev Dependencies)
+# ==============================================================================
+black==24.4.2              # Automatyczne formatowanie kodu zgodnie z PEP 8
+pytest==8.2.0              # Framework do uruchamiania testów jednostkowych
+pytest-mock==3.14.0        # Wymagane do mockowania sprzętowych metod ADC podczas testów
+micropython-esp32-stubs    # Podpowiedzi kodu (IntelliSense) dla modułów machine, network, deepsleep
