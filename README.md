@@ -111,6 +111,8 @@ esp32-soil-monitor/
 
 ## ⚙️ Instalacja i konfiguracja
 *[DOKŁADNA INSTRUKCJA KROK PO KROKU](instrukcja.txt)*
+
+*[WYMAGANIA](requirements.txt)*
 ### 1. Wgranie MicroPython na ESP32
 
 Pobierz odpowiednią wersję firmware MicroPython i wgraj ją na płytkę ESP32.
