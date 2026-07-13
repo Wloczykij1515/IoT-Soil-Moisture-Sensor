@@ -22,7 +22,7 @@ while stan == True:
             PODŁĄCZ
     ESP32               SENSOR
     GND        <->        GND
-    3.3V       <->        VCC
+    P18        <->        VCC
     P34        <->        AOUT
     
     JEŻELI PODŁĄCZYŁEŚ WPISZ YES
